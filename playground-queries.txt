@@ -1,0 +1,93 @@
+QUERY ALL THOUGHTS
+query {
+  thoughts {
+    _id
+    username
+    thoughtText
+    createdAt
+  }
+}
+
+QUERY THOUGHTS BY USERNAME 
+query {
+  thoughts(username: "Rollin_Kling66") {
+    username
+    thoughtText
+  }
+}
+
+QUERY THOUGHTS WITH REACTIONS
+query {
+  thoughts {
+    _id
+    username
+    thoughtText
+    reactions {
+      _id
+      createdAt
+      username
+      reactionBody
+    }
+  }
+}
+
+query {
+  # get all users
+  users {
+    username
+    email
+  }
+
+  # get a single user by username (use a username from your database)
+  user(username: "Sasha11") {
+    username
+    email
+    friendCount
+    thoughts {
+      thoughtText
+    }
+    friends {
+      username
+    }
+  }
+
+  # query all thoughts
+  thoughts {
+    _id
+    username
+    thoughtText
+    reactions {
+      _id
+      createdAt
+      username
+      reactionBody
+    }
+  }
+
+  # query a single thought (use an _id from a thought in your database)
+  thought(_id: "61f74121d7afd32cac62ba11") {
+    _id
+    username
+    thoughtText
+    createdAt
+    reactions {
+      username
+      reactionBody
+    }
+  }
+}
+
+GET SINGLE USERNAME
+query getSingleUser($username: String!) {
+  user(username: $username) {
+    username
+    friendCount
+    thoughts {
+      thoughtText
+      createdAt
+    }
+    friends {
+      username
+    }
+  }
+}
